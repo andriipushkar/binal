@@ -1,0 +1,16 @@
+2025-04-30 09:33:24,450 - INFO - Розпочато виконання скрипта earn_account_binance.py
+2025-04-30 09:33:24,454 - INFO - API ключі завантажено.
+2025-04-30 09:33:25,394 - INFO - Успішно підключено до Binance API.
+2025-04-30 09:33:25,396 - INFO - 
+Отримання Earn балансу...
+2025-04-30 09:33:25,396 - INFO - --- Отримання балансу Binance Earn (Simple Earn) ---
+2025-04-30 09:33:25,396 - INFO -   Спроба отримати Flexible Simple Earn...
+2025-04-30 09:33:25,872 - INFO -   Знайдено 3 Flexible Simple Earn позицій з балансом > 0.
+2025-04-30 09:33:27,000 - INFO -   Спроба отримати Locked Simple Earn...
+2025-04-30 09:33:27,601 - INFO -   Не знайдено Locked Simple Earn позицій з балансом > 0.
+2025-04-30 09:33:27,601 - INFO - 
+Загальний Binance Earn баланс (оцінка в USD): 331.14 USD
+2025-04-30 09:33:27,601 - INFO - Дані збережено у файл JSON: d:\code\pro1\balance\output\earn_account_binance_output.json
+2025-04-30 09:33:27,683 - INFO - Дані збережено у файл TXT: d:\code\pro1\balance\output\earn_account_binance_output.txt
+2025-04-30 09:33:27,683 - INFO - 
+Виконання скрипта earn_account_binance.py завершено.

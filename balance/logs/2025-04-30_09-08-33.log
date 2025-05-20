@@ -1,0 +1,134 @@
+2025-04-30 09:08:33,752 - INFO - Розпочато виконання головного скрипта.
+2025-04-30 09:08:33,755 - INFO - API ключі завантажено.
+2025-04-30 09:08:35,537 - INFO - Успішно підключено до Binance API.
+2025-04-30 09:08:35,537 - INFO - 
+Отримання балансу...
+2025-04-30 09:08:35,537 - INFO - --- Отримання спотового балансу ---
+2025-04-30 09:08:39,002 - WARNING - Не вдалося отримати ціну для LDBNB у парі зі стейблкоїном, BTC або BNB.
+2025-04-30 09:08:49,018 - ERROR - Помилка при отриманні ціни для LDETHUSDT: HTTPSConnectionPool(host='api.binance.com', port=443): Read timed out. (read timeout=10)
+2025-04-30 09:08:49,035 - ERROR - Помилка при отриманні ціни для LDETHBUSD: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=LDETHBUSD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0C440>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,038 - ERROR - Помилка при конвертації LDETH через BTC: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=LDETHBTC (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0CAD0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,039 - ERROR - Помилка при конвертації LDETH через BNB: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=LDETHBNB (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0CE90>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,041 - WARNING - Не вдалося отримати ціну для LDETH у парі зі стейблкоїном, BTC або BNB.
+2025-04-30 09:08:49,042 - ERROR - Помилка при отриманні ціни для LDDOGEUSDT: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=LDDOGEUSDT (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0D280>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,042 - ERROR - Помилка при отриманні ціни для LDDOGEBUSD: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=LDDOGEBUSD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0D640>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,047 - ERROR - Помилка при конвертації LDDOGE через BTC: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=LDDOGEBTC (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0D9D0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,050 - ERROR - Помилка при конвертації LDDOGE через BNB: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=LDDOGEBNB (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0DD90>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,050 - WARNING - Не вдалося отримати ціну для LDDOGE у парі зі стейблкоїном, BTC або BNB.
+2025-04-30 09:08:49,054 - ERROR - Помилка при отриманні ціни для ANCUSDT: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=ANCUSDT (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62E9B9E0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,056 - ERROR - Помилка при отриманні ціни для ANCBUSD: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=ANCBUSD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62EF7FE0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,063 - ERROR - Помилка при конвертації ANC через BTC: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=ANCBTC (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0DCA0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,066 - ERROR - Помилка при конвертації ANC через BNB: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=ANCBNB (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0D8B0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,066 - WARNING - Не вдалося отримати ціну для ANC у парі зі стейблкоїном, BTC або BNB.
+2025-04-30 09:08:49,069 - ERROR - Помилка при отриманні ціни для ETHWUSDT: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=ETHWUSDT (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0D4F0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,069 - ERROR - Помилка при отриманні ціни для ETHWBUSD: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=ETHWBUSD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0D040>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,077 - ERROR - Помилка при конвертації ETHW через BTC: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=ETHWBTC (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0C860>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,082 - ERROR - Помилка при конвертації ETHW через BNB: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=ETHWBNB (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0E120>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,082 - WARNING - Не вдалося отримати ціну для ETHW у парі зі стейблкоїном, BTC або BNB.
+2025-04-30 09:08:49,086 - ERROR - Помилка при отриманні ціни для KAITOUSDT: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=KAITOUSDT (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0E510>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,087 - ERROR - Помилка при отриманні ціни для KAITOBUSD: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=KAITOBUSD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0E8D0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,091 - ERROR - Помилка при конвертації KAITO через BTC: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=KAITOBTC (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0EC60>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,093 - ERROR - Помилка при конвертації KAITO через BNB: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ticker/price?symbol=KAITOBNB (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC628291C0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,093 - WARNING - Не вдалося отримати ціну для KAITO у парі зі стейблкоїном, BTC або BNB.
+2025-04-30 09:08:49,093 - INFO - 
+Загальний спотовий баланс (оцінка в USD): 0.40 USD
+2025-04-30 09:08:49,093 - INFO - --- Отримання балансу Binance Earn (Simple Earn) ---
+2025-04-30 09:08:49,093 - INFO -   Спроба отримати Flexible Simple Earn...
+2025-04-30 09:08:49,098 - ERROR - Невідома помилка при отриманні балансу Binance Earn: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /sapi/v1/simple-earn/flexible/position?recvWindow=10000&timestamp=1745993329093&signature=c422a68a85df44b4ddd4411238c759098c447aaad7867a65013556a94dcb67b5 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0E5D0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,098 - ERROR - Деталі помилки:
+2025-04-30 09:08:49,356 - ERROR - Traceback (most recent call last):
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\socket.py", line 978, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connection.py", line 704, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x000002BC62F0E5D0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /sapi/v1/simple-earn/flexible/position?recvWindow=10000&timestamp=1745993329093&signature=c422a68a85df44b4ddd4411238c759098c447aaad7867a65013556a94dcb67b5 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0E5D0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\code\pro1\balance\api.py", line 188, in get_earn_balance
+    flexible_positions = client.get_simple_earn_flexible_product_position()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\binance\client.py", line 5946, in get_simple_earn_flexible_product_position
+    return self._request_margin_api(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\binance\client.py", line 165, in _request_margin_api
+    return self._request(method, uri, signed, force_params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\binance\client.py", line 88, in _request
+    self.response = getattr(self.session, method)(uri, headers=headers, data=data, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andri\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /sapi/v1/simple-earn/flexible/position?recvWindow=10000&timestamp=1745993329093&signature=c422a68a85df44b4ddd4411238c759098c447aaad7867a65013556a94dcb67b5 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0E5D0>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
+
+2025-04-30 09:08:49,356 - INFO - 
+Загальний Binance Earn баланс (оцінка в USD): 0.00 USD
+2025-04-30 09:08:49,362 - INFO - --- Отримання ф'ючерсного балансу (USDT-M) ---
+2025-04-30 09:08:49,362 - ERROR - Невідома помилка при отриманні ф'ючерсного балансу: HTTPSConnectionPool(host='fapi.binance.com', port=443): Max retries exceeded with url: /fapi/v2/account?recvWindow=10000&timestamp=1745993329362&signature=dd4904b3454df6c75c1b9cc84538efe9b25830f1a2eef74784011420315c2e23 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002BC62F0D190>: Failed to resolve 'fapi.binance.com' ([Errno 11001] getaddrinfo failed)"))
+2025-04-30 09:08:49,362 - INFO - 
+Загальний ф'ючерсний баланс (оцінка в USD): 0.00 USD
+2025-04-30 09:08:49,377 - INFO - 
+Спотовий баланс:
+2025-04-30 09:08:49,377 - INFO - 
+ Актив    Вільний Заблокований     Всього Вартість (USD)
+   ETH 0.00000547   0.00000000 0.00000547           0.01
+  USDT 0.32328000   0.00000000 0.32328000           0.32
+  USDC 0.06720962   0.00000000 0.06720962           0.07
+ LDBNB 0.00084338   0.00000000 0.00084338            N/A
+ LDETH 0.17972259   0.00000000 0.17972259            N/A
+LDDOGE 0.00000352   0.00000000 0.00000352            N/A
+   ANC 0.00022672   0.00000000 0.00022672            N/A
+  ETHW 0.00000583   0.00000000 0.00000583            N/A
+ KAITO 0.00931159   0.00000000 0.00931159            N/A
+2025-04-30 09:08:49,380 - INFO - Дані збережено у файл JSON: D:\code\pro1\balance\output\balance_output.json
+2025-04-30 09:08:49,381 - INFO - Дані збережено у файл TXT: D:\code\pro1\balance\output\balance_output.txt
+2025-04-30 09:08:49,381 - INFO - 
+Виконання головного скрипта завершено.
