@@ -1,3 +1,0 @@
-2025-04-30 09:10:14,517 - INFO - Розпочато виконання головного скрипта.
-2025-04-30 09:10:14,520 - INFO - API ключі завантажено.
-2025-04-30 09:10:14,527 - ERROR - Невідома помилка при підключенні: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /api/v3/ping (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000023B6C55F500>: Failed to resolve 'api.binance.com' ([Errno 11001] getaddrinfo failed)"))
