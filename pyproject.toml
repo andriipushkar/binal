@@ -52,6 +52,7 @@ yarl = "1.19.0"
 pytest = "*"
 "pytest-mock" = "*"
 matplotlib = "*"
+pandas-ta = "^0.3.14b0"
 
 [build-system]
 requires = ["poetry-core"]
