@@ -1,5 +1,6 @@
 # pro1/balance/script_runner.py
 import logging
+import os
 from . import config 
 from . import api
 from . import data_processing
@@ -91,5 +92,11 @@ def run_balance_script(report_type, calling_script_name="скрипта", dust_t
         
         data_processing.save_to_json(json_data_to_save, output_dir_path=config.OUTPUT_DIR, file_name=json_output_file_name)
         data_processing.save_to_txt(txt_data_to_save, output_dir_path=config.OUTPUT_DIR, file_name=txt_output_file_name)
+
+    # Зберігаємо історію, якщо це був повний звіт
+    if report_type == 'full':
+        overall_total_balance = total_spot_usd_data + total_earn_usd_data + total_usdt_m_futures_usd_data + total_coin_m_futures_usd_data
+        history_file = os.path.join(config.OUTPUT_DIR, 'balance_history.csv')
+        data_processing.save_balance_history(overall_total_balance, history_file)
 
     logging.info(f"\nЗавершено обробку звіту типу '{report_type}' для скрипта '{calling_script_name}'.")

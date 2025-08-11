@@ -3,7 +3,8 @@ import os
 import logging
 import json
 import pandas as pd
-# from datetime import datetime # Імпорт datetime тут не потрібен
+import csv
+from datetime import datetime
 
 # Припустимо, логування вже налаштовано в головному скрипті (main.py)
 # Функції тут просто використовують існуючий логер
@@ -152,4 +153,31 @@ def save_to_txt(data_string, output_dir_path, file_name):
         return True
     except Exception as e:
         logging.error(f"Помилка при збереженні у файл TXT ({output_file_path}): {e}")
+        return False
+
+def save_balance_history(total_balance_usd, history_file_path):
+    """
+    Додає запис про поточний загальний баланс у CSV файл.
+    Створює файл з заголовками, якщо він не існує.
+    """
+    # Перевіряємо, чи існує папка, і створюємо її, якщо ні
+    output_dir = os.path.dirname(history_file_path)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+        
+    file_exists = os.path.exists(history_file_path)
+    try:
+        with open(history_file_path, 'a', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            # Якщо файл новий, записуємо заголовки
+            if not file_exists:
+                writer.writerow(['timestamp', 'total_balance_usd'])
+            
+            # Записуємо нові дані
+            timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            writer.writerow([timestamp, f"{total_balance_usd:.2f}"]) # Зберігаємо з 2 знаками після коми
+        logging.info(f"Історію балансу оновлено. Файл: {history_file_path}")
+        return True
+    except Exception as e:
+        logging.error(f"Помилка при збереженні історії балансу у файл ({history_file_path}): {e}")
         return False
