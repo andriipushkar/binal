@@ -34,31 +34,35 @@
 
 ## Використання
 
-Ви можете запускати різні скрипти для отримання звітів по конкретних гаманцях або повний звіт.
+Скрипт запускається з командного рядка за допомогою `main.py` з аргументом `--type` для вказівки типу звіту.
 
-*   **Повний звіт (Спот, Earn, Ф'ючерси):**
+*   **Повний звіт (за замовчуванням):**
     ```bash
-    python balance_binance.py
+    python main.py
+    ```
+    або
+    ```bash
+    python main.py --type full
     ```
 
 *   **Тільки спотовий гаманець:**
     ```bash
-    python spot_account_binance.py
+    python main.py --type spot
     ```
 
 *   **Тільки Earn гаманець:**
     ```bash
-    python earn_account_binance.py
+    python main.py --type earn
     ```
 
 *   **Тільки USDT-M ф'ючерсний гаманець:**
     ```bash
-    python futures_account_binance.py
+    python main.py --type futures
     ```
 
 *   **Тільки COIN-M ф'ючерсний гаманець:**
     ```bash
-    python coin_m_futures_account_binance.py
+    python main.py --type coin_m_futures
     ```
 
 Результати роботи скриптів зберігаються в папку `balance/output/`, а лог-файли — в `balance/logs/`.
