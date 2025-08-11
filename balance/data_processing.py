@@ -25,7 +25,7 @@ def format_spot_balance_table(spot_balances_list):
     
     # Обробка стовпця "Вартість (USD)" для виводу (N/A або число)
     if 'Вартість (USD)' in df_spot.columns:
-        df_spot['Вартість (USD)'] = df_spot['Вартість (USD)'].apply(lambda x: f'{x:.2f}' if pd.notna(x) else 'N/A')
+        df_spot['Вартість (USD)'] = df_spot['Вартість (USD)'].apply(lambda x: f'{x:.2f}' if pd.notna(x) and isinstance(x, (int, float)) else 'N/A')
 
     # Переконуємося, що основні колонки існують для виводу
     columns_to_show = ['Актив', 'Вільний', 'Заблокований', 'Всього', 'Вартість (USD)']
@@ -68,7 +68,7 @@ def format_earn_balance_table(earn_list):
     if 'Всього' in df_display.columns:
         df_display['Всього'] = df_display['Всього'].apply(lambda x: f"{x:.8f}" if pd.notna(x) else 'N/A')
     if 'Вартість (USD)' in df_display.columns:
-        df_display['Вартість (USD)'] = df_display['Вартість (USD)'].apply(lambda x: f"{x:.2f}" if pd.notna(x) else 'N/A')
+        df_display['Вартість (USD)'] = df_display['Вартість (USD)'].apply(lambda x: f"{x:.2f}" if pd.notna(x) and isinstance(x, (int, float)) else 'N/A')
     
     # Заповнюємо NA для текстових колонок, якщо потрібно
     if 'Дата закінчення' in df_display.columns:

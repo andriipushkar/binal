@@ -170,35 +170,44 @@ def get_price_in_usd(symbol, client):
     """
     Отримує поточну оціночну ціну символу в USD.
     Використовує кешування та різні стратегії: прямі пари зі стейблкоїнами, конвертація через BTC/BNB.
+    Якщо ціну не знайдено, повертає 0.0 і логує помилку.
     """
-    cached_price = price_cache.get(symbol)
-    if cached_price is not None:
-        return cached_price
+    if symbol in price_cache:
+        return price_cache[symbol]
 
-    if symbol in ['USDT', 'BUSD', 'USDC', 'DAI', 'UST', 'USD']: 
-         price_cache[symbol] = 1.0
-         return 1.0
+    # Основні стейблкоїни, які вважаються еквівалентом 1 USD
+    if symbol in ['USDT', 'BUSD', 'USDC', 'TUSD', 'DAI', 'USD']:
+        price_cache[symbol] = 1.0
+        return 1.0
 
-    stablecoins_to_try = ['USDT', 'BUSD']
+    logging.debug(f"Пошук ціни для {symbol}...")
+
+    # 1. Спроба знайти пряму пару з популярними стейблкоїнами
+    stablecoins_to_try = ['USDT', 'BUSD', 'USDC', 'TUSD']
     for stablecoin in stablecoins_to_try:
         price = _try_get_price_via_stablecoin(symbol, client, stablecoin)
         if price is not None:
             price_cache[symbol] = price
             return price
 
+    # 2. Якщо не знайдено, спроба конвертації через BTC
+    logging.debug(f"Не знайдено прямих пар зі стейблкоїнами для {symbol}. Спроба конвертації через BTC...")
     price = _try_get_price_via_conversion(symbol, client, 'BTC')
     if price is not None:
         price_cache[symbol] = price
         return price
 
+    # 3. Якщо не знайдено, спроба конвертації через BNB
+    logging.debug(f"Не вдалося конвертувати {symbol} через BTC. Спроба конвертації через BNB...")
     price = _try_get_price_via_conversion(symbol, client, 'BNB')
     if price is not None:
         price_cache[symbol] = price
         return price
     
-    logging.warning(f"Не вдалося отримати ціну для {symbol} жодним зі способів.")
-    price_cache[symbol] = None 
-    return None
+    # 4. Якщо жоден спосіб не спрацював
+    logging.error(f"ПОВНА ПОМИЛКА: Не вдалося отримати ціну для '{symbol}' жодним зі способів.")
+    price_cache[symbol] = 0.0  # Кешуємо 0.0, щоб не повторювати запити
+    return 0.0
 
 @retry_on_exception(allowed_exceptions_tuple=(BinanceAPIException, BinanceRequestException, ConnectionError, Timeout, TooManyRedirects))
 def get_account_details_with_retry(client):
@@ -225,18 +234,18 @@ def get_spot_balance(client, dust_threshold=0.01):
                 total_asset_balance = free_balance + locked_balance
 
                 if total_asset_balance > 0:
-                    price_in_usd = get_price_in_usd(asset, client) 
-                    asset_value_in_usd = 0.0 
-                    if price_in_usd is not None:
-                         asset_value_in_usd = total_asset_balance * price_in_usd
-                    
-                    if price_in_usd is not None and asset_value_in_usd < dust_threshold:
+                    price_in_usd = get_price_in_usd(asset, client)
+                    asset_value_in_usd = 0.0
+                    if price_in_usd > 0:
+                        asset_value_in_usd = total_asset_balance * price_in_usd
+
+                    if price_in_usd > 0 and asset_value_in_usd < dust_threshold:
                         total_dust_value_usd += asset_value_in_usd
                         logging.debug(f"Актив {asset} ({total_asset_balance:.8f}, ~{asset_value_in_usd:.4f} USD) відфільтровано як пил.")
-                        continue 
+                        continue
 
-                    assets_with_balance = True 
-                    if price_in_usd is not None: 
+                    assets_with_balance = True
+                    if price_in_usd > 0:
                         total_spot_value_usd += asset_value_in_usd
 
                     spot_balances_list.append({
@@ -244,7 +253,7 @@ def get_spot_balance(client, dust_threshold=0.01):
                         'Вільний': free_balance,
                         'Заблокований': locked_balance,
                         'Всього': total_asset_balance,
-                        'Вартість (USD)': asset_value_in_usd if price_in_usd is not None else None
+                        'Вартість (USD)': asset_value_in_usd if price_in_usd > 0 else "N/A"
                     })
             if not assets_with_balance and not spot_balances_list: 
                 logging.info("На спотовому гаманці немає активів з балансом > 0 (після фільтрації пилу).")
@@ -287,22 +296,22 @@ def get_earn_balance(client, dust_threshold=0.01):
                      total_amount = float(position.get('totalAmount', 0))
                      if total_amount > 0 and asset: 
                          price_in_usd = get_price_in_usd(asset, client)
-                         asset_value_in_usd = 0.0 
-                         if price_in_usd is not None:
+                         asset_value_in_usd = 0.0
+                         if price_in_usd > 0:
                               asset_value_in_usd = total_amount * price_in_usd
-                         
-                         if price_in_usd is not None and asset_value_in_usd < dust_threshold:
+
+                         if price_in_usd > 0 and asset_value_in_usd < dust_threshold:
                              total_dust_value_usd += asset_value_in_usd
                              logging.debug(f"Earn актив {asset} (Flexible, {total_amount:.8f}, ~{asset_value_in_usd:.4f} USD) відфільтровано як пил.")
                              continue
 
-                         if price_in_usd is not None: 
+                         if price_in_usd > 0:
                             total_earn_value_usd += asset_value_in_usd
                          earn_balances_list.append({
                              'Актив': asset,
                              'Продукт': 'Flexible Simple Earn',
                              'Всього': total_amount,
-                             'Вартість (USD)': asset_value_in_usd if price_in_usd is not None else None
+                             'Вартість (USD)': asset_value_in_usd if price_in_usd > 0 else "N/A"
                          })
             else:
                 logging.info("  Не знайдено Flexible Simple Earn позицій з балансом > 0.")
@@ -322,22 +331,22 @@ def get_earn_balance(client, dust_threshold=0.01):
                      end_date = position.get('endDate')
                      if total_amount > 0 and asset: 
                           price_in_usd = get_price_in_usd(asset, client)
-                          asset_value_in_usd = 0.0 
-                          if price_in_usd is not None:
+                          asset_value_in_usd = 0.0
+                          if price_in_usd > 0:
                                asset_value_in_usd = total_amount * price_in_usd
 
-                          if price_in_usd is not None and asset_value_in_usd < dust_threshold:
+                          if price_in_usd > 0 and asset_value_in_usd < dust_threshold:
                               total_dust_value_usd += asset_value_in_usd
                               logging.debug(f"Earn актив {asset} (Locked, {total_amount:.8f}, ~{asset_value_in_usd:.4f} USD) відфільтровано як пил.")
                               continue
                           
-                          if price_in_usd is not None: 
+                          if price_in_usd > 0:
                             total_earn_value_usd += asset_value_in_usd
                           earn_item = {
                               'Актив': asset,
                               'Продукт': 'Locked Simple Earn',
                               'Всього': total_amount,
-                              'Вартість (USD)': asset_value_in_usd if price_in_usd is not None else None
+                              'Вартість (USD)': asset_value_in_usd if price_in_usd > 0 else "N/A"
                           }
                           if end_date:
                               earn_item['Дата закінчення'] = end_date 
@@ -448,24 +457,25 @@ def get_coin_m_futures_balance(client):
             # Використовуємо мале число для порівняння з плаваючою точкою, щоб уникнути проблем з точністю
             if abs(wallet_balance) > 1e-9 or abs(unrealized_pnl) > 1e-9 or abs(total_asset_coin_balance) > 1e-9:
                 price_in_usd = get_price_in_usd(asset_symbol, client)
-                asset_value_in_usd = 0.0 
-                
-                if price_in_usd is not None:
+                asset_value_in_usd = 0.0
+
+                if price_in_usd > 0:
                     asset_value_in_usd = total_asset_coin_balance * price_in_usd
                     total_coin_m_value_usd += asset_value_in_usd
                 else:
-                    logging.warning(f"Не вдалося отримати ціну в USD для {asset_symbol} (COIN-M). Вартість цього активу не буде врахована у підсумку.")
+                    # Помилка вже залогована у get_price_in_usd
+                    pass
 
                 coin_m_balances_list.append({
                     'Актив': asset_symbol,
                     'Баланс гаманця': wallet_balance,
                     'Нереалізований PNL': unrealized_pnl,
-                    'Загалом в монеті': total_asset_coin_balance, 
-                    'Ціна (USD)': price_in_usd, 
-                    'Вартість (USD)': asset_value_in_usd if price_in_usd is not None else None
+                    'Загалом в монеті': total_asset_coin_balance,
+                    'Ціна (USD)': price_in_usd if price_in_usd > 0 else "N/A",
+                    'Вартість (USD)': asset_value_in_usd if price_in_usd > 0 else "N/A"
                 })
                 logging.info(f"  COIN-M Актив: {asset_symbol}, Гаманець: {wallet_balance:.8f}, PNL: {unrealized_pnl:.8f}, Всього: {total_asset_coin_balance:.8f} {asset_symbol}, "
-                             f"Оцінка USD: {'{:.2f}'.format(asset_value_in_usd) if price_in_usd is not None else 'N/A'} USD (Ціна: {'{:.2f}'.format(price_in_usd) if price_in_usd is not None else 'N/A'} USD)")
+                             f"Оцінка USD: {'{:.2f}'.format(asset_value_in_usd) if price_in_usd > 0 else 'N/A'} USD (Ціна: {'{:.2f}'.format(price_in_usd) if price_in_usd > 0 else 'N/A'} USD)")
 
         if not coin_m_balances_list:
             logging.info("На COIN-M ф'ючерсному рахунку немає активів з значущим балансом/PNL для відображення.")
