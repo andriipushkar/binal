@@ -52,3 +52,78 @@ def test_get_spot_balance_with_mock(mock_binance_client):
     asset_names = [item['Актив'] for item in spot_list]
     assert 'LTC' not in asset_names
     assert len(spot_list) == 2
+
+def test_get_earn_balance_with_mock(mock_binance_client):
+    """
+    Тестує метод get_earn_balance з використанням мока.
+    """
+    # Мокуємо відповіді для Earn
+    mock_binance_client.get_simple_earn_flexible_product_position.return_value = {
+        'rows': [
+            {'asset': 'USDT', 'totalAmount': '100.0'},
+        ]
+    }
+    mock_binance_client.get_simple_earn_locked_product_position.return_value = {
+        'rows': [
+            {'asset': 'BTC', 'totalAmount': '0.1'},
+        ]
+    }
+
+    # Створюємо екземпляр класу
+    account = BinanceAccount(api_key="test_key", secret_key="test_secret")
+    account.client = mock_binance_client
+
+    # Мокуємо ціни для активів в Earn
+    account.price_cache = {'USDT': 1.0, 'BTC': 60000.0}
+
+    earn_list, total_usd, dust_usd = account.get_earn_balance(dust_threshold=0.01)
+
+    # Перевіряємо загальні суми
+    assert total_usd == pytest.approx(100.0 * 1.0 + 0.1 * 60000.0)
+    assert dust_usd == 0.0
+
+    # Перевіряємо, що активи є у списку
+    asset_names = [item['Актив'] for item in earn_list]
+    assert 'USDT' in asset_names
+    assert 'BTC' in asset_names
+    assert len(earn_list) == 2
+
+def test_get_futures_balance_with_mock(mock_binance_client):
+    """
+    Тестує метод get_futures_balance (USDT-M) з використанням мока.
+    """
+    # Мокуємо відповідь для USDT-M Futures
+    mock_binance_client.futures_account.return_value = {
+        'assets': [
+            {'asset': 'USDT', 'walletBalance': '1000.0', 'unrealizedProfit': '50.0'},
+        ]
+    }
+
+    account = BinanceAccount(api_key="test_key", secret_key="test_secret")
+    account.client = mock_binance_client
+
+    total_usd, futures_info = account.get_futures_balance()
+
+    assert total_usd == pytest.approx(1050.0)
+    assert futures_info['Актив'] == 'USDT'
+
+def test_get_coin_m_futures_balance_with_mock(mock_binance_client):
+    """
+    Тестує метод get_coin_m_futures_balance з використанням мока.
+    """
+    # Мокуємо відповідь для COIN-M Futures
+    mock_binance_client.futures_coin_account.return_value = {
+        'assets': [
+            {'asset': 'BTC', 'walletBalance': '2.0', 'unrealizedProfit': '-0.1'},
+        ]
+    }
+
+    account = BinanceAccount(api_key="test_key", secret_key="test_secret")
+    account.client = mock_binance_client
+    account.price_cache = {'BTC': 60000.0}
+
+    coin_m_list, total_usd = account.get_coin_m_futures_balance()
+
+    assert total_usd == pytest.approx(1.9 * 60000.0)
+    assert len(coin_m_list) == 1
+    assert coin_m_list[0]['Актив'] == 'BTC'
